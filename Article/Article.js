@@ -85,8 +85,69 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Bill Bob Bo Bob ba Bab',
+    date: 'Jan 69th, 2420',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+
+function newsArticle (title,date,first,second,third) {
+  const article = document.createElement('div')
+  const artTitle = document.createElement('h2')
+  const artDate = document.createElement('p')
+  const firstPara = document.createElement('p')
+  const secondPara = document.createElement('p')
+  const thirdPara = document.createElement('p')
+  const button = document.createElement('span')
+
+
+  article.appendChild(artTitle);
+  article.appendChild(artDate);
+  article.appendChild(firstPara);
+  article.appendChild(secondPara);
+  article.appendChild(thirdPara);
+  article.appendChild(button);
+
+  article.classList.add('article');
+  artDate.classList.add('date');
+  button.classList.add('expandButton');
+
+  artTitle.textContent = title;
+  artDate.textContent = date;
+  firstPara.textContent = first;
+  secondPara.textContent = second;
+  thirdPara.textContent = third;
+  button.textContent = 'expand';
+
+
+  button.addEventListener('click', () => {
+    console.log(article)
+    article.classList.toggle('article-open');
+  })
+
+  return article
+}
+
+const articles = document.querySelector('.articles')
+data.forEach( data => {
+  articles.appendChild(newsArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+});
+
+
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
@@ -102,7 +163,7 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
+  
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
