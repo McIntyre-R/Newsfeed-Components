@@ -113,6 +113,7 @@ function newsArticle (title,date,first,second,third) {
   const secondPara = document.createElement('p')
   const thirdPara = document.createElement('p')
   const button = document.createElement('span')
+  const read = document.createElement('button')
 
 
   article.appendChild(artTitle);
@@ -120,7 +121,9 @@ function newsArticle (title,date,first,second,third) {
   article.appendChild(firstPara);
   article.appendChild(secondPara);
   article.appendChild(thirdPara);
+  article.appendChild(read);
   article.appendChild(button);
+ 
 
   article.classList.add('article');
   artDate.classList.add('date');
@@ -132,8 +135,12 @@ function newsArticle (title,date,first,second,third) {
   secondPara.textContent = second;
   thirdPara.textContent = third;
   button.textContent = 'expand';
+  read.textContent = 'read'
 
-
+  read.addEventListener('click', () => {
+    article.style.display = 'none';
+  })
+  
   button.addEventListener('click', () => {
     console.log(article)
     article.classList.toggle('article-open');
